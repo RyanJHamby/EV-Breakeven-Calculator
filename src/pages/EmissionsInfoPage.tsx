@@ -1,6 +1,6 @@
 import React from "react";
-//Functional Component 
-const EmissionsInfoPage = () => {
+
+export default function EmissionsInfoPage() {
     return (
         <div>
             <h3>Welcome to the Emissions Tutorial</h3>
@@ -8,5 +8,3 @@ const EmissionsInfoPage = () => {
         </div>
     );
 };
-
-export default EmissionsInfoPage;
