@@ -1,6 +1,7 @@
 import React from "react";
-//Functional Component 
-const MainPage = () => {
+
+
+export default function MainPage() {
     return (
         <div>
             <h3>Welcome to the React Router Tutorial</h3>
@@ -8,5 +9,3 @@ const MainPage = () => {
         </div>
     );
 };
-
-export default MainPage;

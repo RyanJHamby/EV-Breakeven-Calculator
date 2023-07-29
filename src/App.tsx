@@ -1,17 +1,12 @@
-/*App.tsx*/
-import React, { Component } from "react";
-import "./App.css";
-import { BrowserRouter } from "react-router-dom";
-import Router from "./pages/router";
+import React from "react";
+import "./style/App.css";
+import { RouterProvider } from "react-router-dom";
+import { router } from "./routes";
 
-class App extends Component {
-  render() {
+export default function App() {
     return (
-      <BrowserRouter>
-        <Router />
-      </BrowserRouter>
+        <React.StrictMode>
+            <RouterProvider router={router} />
+        </React.StrictMode>
     );
-  }
 }
-
-export default App;
