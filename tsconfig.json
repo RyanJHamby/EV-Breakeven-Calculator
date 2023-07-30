@@ -20,10 +20,6 @@
     "noEmit": true,
     "jsx": "react-jsx"
   },
-  // "proxy": "https://developer.nrel.gov",
-  // "proxy":"http://localhost:8080/",
-  // "proxy": "https://cors-anywhere.herokuapp.com/",
-  "noImplicitAny": false,
   "include": [
     "src"
 , "src/index.tsx"  ]
