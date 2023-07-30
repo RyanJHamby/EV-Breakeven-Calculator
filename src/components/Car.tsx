@@ -1,21 +1,16 @@
 import React, { FC } from "react";
 
-export interface CarProps {
-  // Define your props interface here
-  Make_ID: number;
-  Make_Name: string;
-  Model_ID: number;
-  Model_Name: string;
+export type CarProps = {
+    model: string;
+    photo_url: string;
 }
 
-export const Car: FC<CarProps> = (props): JSX.Element => {
-    console.log("hello")
+export const Car: FC<{ obj: CarProps }> = (props): JSX.Element => {
+    console.log("Car component rendered")
     return (
         <div>
-            <h3>{props.Model_ID}</h3>
-            <p>{props.Model_Name}</p>
-            <p>{props.Make_ID}</p>
-            <p>{props.Make_Name}</p>
+            <h3>{props.obj.model}</h3>
+            <img src={props.obj.photo_url} alt="car" />
         </div>
     )
 }

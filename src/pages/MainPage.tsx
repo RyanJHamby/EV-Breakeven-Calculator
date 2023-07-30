@@ -1,38 +1,42 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Car } from "../components/Car";
 import { CarProps } from "../components/Car";
+import axios from "axios";
 
 
 export default function MainPage() {
     const [cars, setCars] = useState<CarProps[]>([]);
 
-    const getCars = () => {
-        fetch("https://vpic.nhtsa.dot.gov/api/vehicles/GetModelsForMakeId/440?format=json")
-            .then((response) => response.json())
-            .then(async (data) => setCars(data.Results))
-            .catch((error) => console.log(error));
-    };
-        
-    const carsList = cars.map((car) => {
+    const getCars = async () => {
+        axios.get("https://developer.nrel.gov/api/vehicles/v1/vehicles.json?limit=1&api_key=DEMO_KEY").then((response) => {
+            setCars(response.data.result);
+            console.log(response.data.result)
+        });
+    }
+
+    const displayFirstNCars = (data: CarProps[], numToShow: number) => {
+        const carsToShow = data.slice(0, numToShow);
         return (
             <div>
-                <Car 
-                    key={car.Make_ID}
-                    Make_ID={car.Make_ID}
-                    Make_Name={car.Make_Name} 
-                    Model_ID={car.Model_ID}
-                    Model_Name={car.Make_Name} 
-                />
+                {
+                    carsToShow.map((car, index) => (
+                            <Car key={index} obj={car} />
+                        )
+                    )
+                }
             </div>
-        )
-    })
+        )      
+    }
+
+    useEffect(() => {
+        getCars();
+    }, []);
 
     return (
         <div>
             <h3>Welcome to the React Router Tutorial</h3>
             <small>Main Page</small>
-            <button onClick={getCars}>Get Cars</button>
-            <div>{carsList}</div>
+            <div>{displayFirstNCars(cars, 10)}</div>
         </div>
     );
 };
