@@ -1,0 +1,37 @@
+.mainPageCar {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 1rem;
+    padding: 1rem;
+    border: 1px solid black;
+    border-radius: 1rem;
+    width: 20rem;
+    height: 20rem;
+}
+
+.carModelTitle {
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+}
+
+.carThumbnail {
+    width: 90%;
+    /* height: 50%; */
+    object-fit: contain;
+}
+
+.carShortInfoSection {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 90%;
+}
+
+.carShortInfoSectionItem {
+    font-size: .8rem;
+}
