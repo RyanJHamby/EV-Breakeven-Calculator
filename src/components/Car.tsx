@@ -20,6 +20,7 @@ export const Car: FC<{ obj: CarProps }> = (props): JSX.Element => {
             })
             return processedWords.join(" ");
         }
+        return "";
     }
 
     const processMileage = (input: string) => {

@@ -3,16 +3,11 @@ import { Car } from "../components/Car";
 import { CarProps } from "../components/Car";
 import axios from "axios";
 import "../style/MainPage.css";
+import api from "../api";
+import getAllCars from "../api";
 
 export default function MainPage() {
-    const [cars, setCars] = useState<CarProps[]>([]);
-
-    const getCars = async () => {
-        axios.get("https://developer.nrel.gov/api/vehicles/v1/vehicles.json?limit=1&api_key=DEMO_KEY").then((response) => {
-            setCars(response.data.result);
-            console.log(response.data.result)
-        });
-    }
+const [cars, setCars] = useState<CarProps[]>([]);
 
     const displayFirstNCars = (data: CarProps[], numToShow: number) => {
         const carsToShow = data.slice(0, numToShow);
@@ -50,13 +45,14 @@ export default function MainPage() {
     }
 
     useEffect(() => {
-        getCars();
+        getAllCars().then((returnedCars) => { 
+            setCars(returnedCars);
+        })
     }, []);
 
     return (
         <div>
-            <h3>Welcome to the React Router Tutorial</h3>
-            <small>Main Page</small>
+            <h3>Alternative Fuel Vehicle Explorer</h3>
             {displayRandomNCars(cars, 10)}
         </div>
     );
