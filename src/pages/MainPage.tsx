@@ -1,59 +1,24 @@
-import React, { useEffect, useState } from "react";
-import { Car } from "../components/Car";
-import { CarProps } from "../components/Car";
-import axios from "axios";
-import "../style/MainPage.css";
-import api from "../api";
+import { useEffect, useState } from "react";
 import getAllCars from "../api";
+import { Car, CarProps } from "../components/Car";
+import "../style/MainPage.css";
+import FilterBar from "../components/FilterBar";
+import { displayRandomNCars } from "../utils/customCarsDisplayFunctions";
 
 export default function MainPage() {
-const [cars, setCars] = useState<CarProps[]>([]);
-
-    const displayFirstNCars = (data: CarProps[], numToShow: number) => {
-        const carsToShow = data.slice(0, numToShow);
-        return (
-            <div className="carGrid">
-                {
-                    carsToShow.map((car, index) => (
-                            <Car key={index} obj={car} />
-                        )
-                    )
-                }
-            </div>
-        )      
-    }
-
-    const displayRandomNCars = (data: CarProps[], numToShow: number) => {
-        const randomCars: CarProps[] = [];
-        if (cars && cars.length > numToShow) {
-            for (let i = 0; i < numToShow; i++) {
-                const randomNumber = Math.floor(Math.random() * cars.length);
-                const randomCar = cars[randomNumber];
-                randomCars.push(randomCar);
-            }
-            return (
-            <div className="carGrid">
-                {
-                    randomCars.map((car, index) => (
-                            <Car key={index} obj={car} />
-                        )
-                    )
-                }
-            </div>
-            )
-        }
-    }
+    const [cars, setCars] = useState<CarProps[]>([]);
 
     useEffect(() => {
         getAllCars().then((returnedCars) => { 
             setCars(returnedCars);
         })
     }, []);
+    
 
     return (
         <div>
-            <h3>Alternative Fuel Vehicle Explorer</h3>
-            {displayRandomNCars(cars, 10)}
+            <h1>Explore Alternative Fuel Source Cars</h1>
+            <FilterBar obj={cars} />
         </div>
     );
 };

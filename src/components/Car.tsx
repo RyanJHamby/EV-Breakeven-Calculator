@@ -2,6 +2,7 @@ import React, { FC } from "react";
 import "../style/Car.css";
 
 export type CarProps = {
+    id: number;
     model: string;
     photo_url: string;
     manufacturer_name: string;
