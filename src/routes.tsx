@@ -1,7 +1,7 @@
 import { createBrowserRouter } from "react-router-dom";
 import ErrorPage from "./pages/ErrorPage";
 import MainPage from "./pages/MainPage";
-import EmissionsInfoPage from "./pages/EmissionsInfoPage";
+import CalculatorPage from "./pages/CalculatorPage";
 
 export const router = createBrowserRouter([
   {
@@ -11,7 +11,7 @@ export const router = createBrowserRouter([
   },
     {
     path: "/emissions-info",
-    element: <EmissionsInfoPage />,
+    element: <CalculatorPage />,
     errorElement: <ErrorPage />,
   },
 ]);

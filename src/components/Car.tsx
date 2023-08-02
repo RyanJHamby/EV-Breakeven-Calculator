@@ -2,6 +2,7 @@ import React, { FC } from "react";
 import "../style/Car.css";
 
 export type CarProps = {
+    id: number;
     model: string;
     photo_url: string;
     manufacturer_name: string;
@@ -20,6 +21,7 @@ export const Car: FC<{ obj: CarProps }> = (props): JSX.Element => {
             })
             return processedWords.join(" ");
         }
+        return "";
     }
 
     const processMileage = (input: string) => {
