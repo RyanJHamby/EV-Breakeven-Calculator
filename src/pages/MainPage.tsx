@@ -1,9 +1,8 @@
 import { useEffect, useState } from "react";
 import getAllCars from "../api";
-import { Car, CarProps } from "../components/Car";
+import { CarProps } from "../components/Car";
+import { FilterSidebar } from "../components/FilterSidebar";
 import "../style/MainPage.css";
-import FilterBar from "../components/FilterBar";
-import { displayRandomNCars } from "../utils/customCarsDisplayFunctions";
 
 export default function MainPage() {
     const [cars, setCars] = useState<CarProps[]>([]);
@@ -18,7 +17,7 @@ export default function MainPage() {
     return (
         <div>
             <h1>Explore Alternative Fuel Source Cars</h1>
-            <FilterBar obj={cars} />
+            <FilterSidebar obj={cars} />
         </div>
     );
 };
