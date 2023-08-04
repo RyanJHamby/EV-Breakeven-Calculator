@@ -3,61 +3,57 @@ import { CarProps } from './Car';
 import { displayFirstNCars } from '../utils/customCarsDisplayFunctions';
   
 export const FilterSidebar: FC<{ obj: CarProps[] }> = (props): JSX.Element => {
-  const [selectedFilters, setSelectedFilters] = useState<string[]>([]);
-  const filterOptions: string[] = [...new Set(props.obj.map((car) => car.manufacturer_name))];
+  const [selectedManufacturerFilters, setSelectedManufacturerFilters] = useState<string[]>([]);
+  const [selectedYearFilters, setSelectedYearFilters] = useState<string[]>([]);
 
+  const manufacturerFilterOptions: string[] = [...new Set(props.obj.map((car) => car.manufacturer_name))];
+  const yearFilterOptions: string[] = [...new Set(props.obj.map((car) => String(car.model_year)))];
 
-  // const filterOptions: string[] = ['All', ...new Set(props.obj.map((car) => car.manufacturer_name))];
-
-  // const handleFilterChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
-  //   setSelectedFilter(event.target.value);
-  // };
-
-  // const filteredCars: CarProps[] = selectedFilter === 'All' ? props.obj : props.obj.filter((car) => car.manufacturer_name === selectedFilter);
-
- const handleCheckboxChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+ const handleManufacturerCheckboxChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const filterValue = event.target.value;
-    setSelectedFilters((prevFilters) =>
+    setSelectedManufacturerFilters((prevFilters) =>
       event.target.checked ? [...prevFilters, filterValue] : prevFilters.filter((filter) => filter !== filterValue)
     );
   };
 
-    // Apply filters to the data (e.g., cars)
+const handleYearCheckboxChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const filterValue = event.target.value;
+    setSelectedYearFilters((prevFilters) =>
+      event.target.checked ? [...prevFilters, filterValue] : prevFilters.filter((filter) => filter !== filterValue)
+    );
+  };
+
   const filteredCars: CarProps[] = props.obj.filter((car) => {
-    // Check if the car matches all selected filters
-    return selectedFilters.every((selectedFilter) => {
-      // Replace these conditions with your actual filtering logic based on car properties
       return (
-        car.manufacturer_name === selectedFilter ||
-        String(car.model_year) === selectedFilter
-        // Add more conditions as needed for additional filters
+        (selectedManufacturerFilters.length === 0 || selectedManufacturerFilters.includes(car.manufacturer_name)) &&
+        (selectedYearFilters.length === 0 || selectedYearFilters.includes(String(car.model_year)))
       );
-    });
   });
 
   return (
     <div>
-      <label>
-        {/* Filter by Brand:
-        <select value={selectedFilter} onChange={handleFilterChange}>
-          {filterOptions.map((option) => (
-            <option key={option} value={option}>
-              {option}
-            </option>
-          ))} */}
-        {/* </select> */}
-      {filterOptions.map((filterOption) => (
+      {manufacturerFilterOptions.map((filterOption) => (
         <label key={filterOption}>
           <input
             type="checkbox"
             value={filterOption}
-            checked={selectedFilters.includes(filterOption)}
-            onChange={handleCheckboxChange}
+            checked={selectedManufacturerFilters.includes(filterOption)}
+            onChange={handleManufacturerCheckboxChange}
           />
           {filterOption}
         </label>
       ))}
-      </label>
+      {yearFilterOptions.map((filterOption) => (
+        <label key={filterOption}>
+          <input
+            type="checkbox"
+            value={filterOption}
+            checked={selectedYearFilters.includes(filterOption)}
+            onChange={handleYearCheckboxChange}
+          />
+          {filterOption}
+        </label>
+      ))}
       <ul>
         {displayFirstNCars(filteredCars, 10)}
       </ul>
