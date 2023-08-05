@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import getAllCars from "../api";
 import { CarProps } from "../components/Car";
-import { FilterSidebar } from "../components/FilterSidebar";
+import { FilterSidebar } from "../components/sidebar/FilterSidebar";
 import "../style/MainPage.css";
 
 export default function MainPage() {
