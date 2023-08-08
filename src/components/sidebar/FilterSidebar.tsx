@@ -1,9 +1,15 @@
 import React, { useState, FC } from 'react';
 import { CarProps } from '../Car';
 import { displayFirstNCars } from '../../utils/customCarsDisplayFunctions';
-import { ManufacturerFilterSection } from './ManufacturerFilterSection';
-import { YearFilterSection } from './YearFilterSection';
-  
+import { ManufacturerFilterSection } from './filterSections/ManufacturerFilterSection';
+import { YearFilterSection } from './filterSections/YearFilterSection';
+
+interface SidebarFilterSectionProps {
+  cars: CarProps[];
+  selected: string[];
+  onChange: (selected: React.ChangeEvent<HTMLInputElement>) => void;
+}
+
 export const FilterSidebar: FC<{ obj: CarProps[] }> = (props): JSX.Element => {
   const [selectedManufacturerFilters, setSelectedManufacturerFilters] = useState<string[]>([]);
   const [selectedYearFilters, setSelectedYearFilters] = useState<string[]>([]);
@@ -17,7 +23,7 @@ export const FilterSidebar: FC<{ obj: CarProps[] }> = (props): JSX.Element => {
 
   const handleYearFilterChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const filterValue = event.target.value;
-    setSelectedManufacturerFilters((prevFilters) =>
+    setSelectedYearFilters((prevFilters) =>
       event.target.checked ? [...prevFilters, filterValue] : prevFilters.filter((filter) => filter !== filterValue)
     );
   };
@@ -32,7 +38,7 @@ export const FilterSidebar: FC<{ obj: CarProps[] }> = (props): JSX.Element => {
   return (
     <div>
       <ManufacturerFilterSection obj={props.obj} selected={selectedManufacturerFilters} onChange={handleManufacturerFilterChange}/>
-      <YearFilterSection obj={props.obj} selected={selectedYearFilters} onChange={handleYearFilterChange}/>
+      <YearFilterSection obj={cars, selectedYearFilters, handleYearFilterChange}/>
       <ul>
         {displayFirstNCars(filteredCars, 10)}
       </ul>
