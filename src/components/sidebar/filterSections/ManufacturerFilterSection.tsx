@@ -1,9 +1,9 @@
 import { FC } from 'react';
 import { SidebarFilterSectionProps } from '../FilterSidebar';
 
-export const ManufacturerFilterSection: FC<{ obj: SidebarFilterSectionProps }> = ({cars, selected, onChange}): JSX.Element => {
+export const ManufacturerFilterSection: FC<SidebarFilterSectionProps> = ({cars, selectedFilters, onChange}): JSX.Element => {
 
-  const manufacturerFilterOptions: string[] = [...new Set(props.obj.cars.map((car) => car.manufacturer_name))];
+  const manufacturerFilterOptions: string[] = [...new Set(cars.map((car) => car.manufacturer_name))];
 
   return (
     <div>
@@ -12,8 +12,8 @@ export const ManufacturerFilterSection: FC<{ obj: SidebarFilterSectionProps }> =
           <input
             type="checkbox"
             value={filterOption}
-            checked={props.obj.selected.includes(filterOption)}
-            onChange={props.obj.onChange}
+            checked={selectedFilters.includes(filterOption)}
+            onChange={onChange}
           />
           {filterOption}
         </label>
