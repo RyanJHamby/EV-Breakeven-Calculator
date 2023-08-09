@@ -8,3 +8,15 @@
     border-radius: 1rem;
     background-color: #fff;
 }
+
+.filterSidebar {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 1rem;
+    padding: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 1rem;
+    background-color: #fff;
+}
