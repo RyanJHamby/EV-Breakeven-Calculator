@@ -1,14 +1,14 @@
 import { FC } from 'react';
 import { SidebarFilterSectionProps } from '../FilterSidebar';
-  
-export const YearFilterSection: FC<SidebarFilterSectionProps> = ({cars, selectedFilters, onChange}): JSX.Element =>  {
 
-  const yearFilterOptions: string[] = [...new Set(cars.map((car) => String(car.model_year)))];
+export const FuelNameFilterSection: FC<SidebarFilterSectionProps> = ({cars, selectedFilters, onChange}): JSX.Element => {
+
+  const FuelNameFilterOptions: string[] = [...new Set(cars.map((car) => car.fuel_name))];
 
   return (
     <div>
-      <h3>Year</h3>
-      {yearFilterOptions.map((filterOption) => (
+      <h3>Fuel Name</h3>
+      {FuelNameFilterOptions.map((filterOption) => (
         <label key={filterOption} className="filterItem">
           <input
             type="checkbox"
@@ -22,4 +22,3 @@ export const YearFilterSection: FC<SidebarFilterSectionProps> = ({cars, selected
     </div>
   );
 };
-
