@@ -1,10 +1,11 @@
-import React, { useState, FC } from 'react';
+import React, { useState, FC, useEffect } from 'react';
 import { CarProps } from '../Car';
 import { displayFirstNCars } from '../../utils/customCarsDisplayFunctions';
 import { ManufacturerFilterSection } from './filterSections/ManufacturerFilterSection';
 import { YearFilterSection } from './filterSections/YearFilterSection';
 import { FuelNameFilterSection } from './filterSections/FuelNameFilterSection';
 import { ElectricRangeFilterSection } from './filterSections/ElectricRangeFilterSection';
+import { FilterSidebarProps } from '../../pages/MainPage';
 
 export interface SidebarFilterSectionProps {
   cars: CarProps[];
@@ -12,7 +13,7 @@ export interface SidebarFilterSectionProps {
   onChange: (selected: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
-export const FilterSidebar: FC<{ obj: CarProps[] }> = (props): JSX.Element => {
+export const FilterSidebar: FC<FilterSidebarProps> = ({ unfilteredCars, onChange }): JSX.Element => {
   const [selectedManufacturerFilters, setSelectedManufacturerFilters] = useState<string[]>([]);
   const [selectedYearFilters, setSelectedYearFilters] = useState<string[]>([]);
   const [selectedFuelNameFilters, setSelectedFuelNameFilters] = useState<string[]>([]);
@@ -23,6 +24,7 @@ export const FilterSidebar: FC<{ obj: CarProps[] }> = (props): JSX.Element => {
     setSelectedManufacturerFilters((prevFilters) =>
       event.target.checked ? [...prevFilters, filterValue] : prevFilters.filter((filter) => filter !== filterValue)
     );
+    updateCarsFilters();
   };
 
   const handleYearFilterChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -30,38 +32,40 @@ export const FilterSidebar: FC<{ obj: CarProps[] }> = (props): JSX.Element => {
     setSelectedYearFilters((prevFilters) =>
       event.target.checked ? [...prevFilters, filterValue] : prevFilters.filter((filter) => filter !== filterValue)
     );
+    updateCarsFilters();
   };
 
   const handleFuelNameFilterChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const filterValue = event.target.value;
-    setSelectedManufacturerFilters((prevFilters) =>
+    setSelectedFuelNameFilters((prevFilters) =>
       event.target.checked ? [...prevFilters, filterValue] : prevFilters.filter((filter) => filter !== filterValue)
     );
+    updateCarsFilters();
   };
 
   const handleElectricRangeFilterChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const filterValue = event.target.value;
-    setSelectedManufacturerFilters((prevFilters) =>
+    setSelectedElectricRangeFilters((prevFilters) =>
       event.target.checked ? [...prevFilters, filterValue] : prevFilters.filter((filter) => filter !== filterValue)
     );
+    updateCarsFilters();
   };
   
-  const filteredCars: CarProps[] = props.obj.filter((car) => {
+  const updateCarsFilters = () => onChange(unfilteredCars.filter((car) => {
       return (
         (selectedManufacturerFilters.length === 0 || selectedManufacturerFilters.includes(car.manufacturer_name)) &&
-        (selectedYearFilters.length === 0 || selectedYearFilters.includes(String(car.model_year)))
+        (selectedYearFilters.length === 0 || selectedYearFilters.includes(String(car.model_year))) &&
+        (selectedFuelNameFilters.length === 0 || selectedFuelNameFilters.includes(String(car.fuel_name))) &&
+        (selectedElectricRangeFilters.length === 0 || selectedElectricRangeFilters.includes(String(car.electric_range)))
       );
-  });
+  }));
 
   return (
     <div className="filterSidebar">
-      <ManufacturerFilterSection cars={props.obj} selectedFilters={selectedManufacturerFilters} onChange={handleManufacturerFilterChange}/>
-      <YearFilterSection cars={props.obj} selectedFilters={selectedYearFilters} onChange={handleYearFilterChange}/>
-      <FuelNameFilterSection cars={props.obj} selectedFilters={selectedFuelNameFilters} onChange={handleFuelNameFilterChange}/>
-      <ElectricRangeFilterSection cars={props.obj} selectedFilters={selectedElectricRangeFilters} onChange={handleElectricRangeFilterChange}/>
-      <ul>
-        {displayFirstNCars(filteredCars, 10)}
-      </ul>
+      <ManufacturerFilterSection cars={unfilteredCars} selectedFilters={selectedManufacturerFilters} onChange={handleManufacturerFilterChange}/>
+      <YearFilterSection cars={unfilteredCars} selectedFilters={selectedYearFilters} onChange={handleYearFilterChange}/>
+      <FuelNameFilterSection cars={unfilteredCars} selectedFilters={selectedFuelNameFilters} onChange={handleFuelNameFilterChange}/>
+      <ElectricRangeFilterSection cars={unfilteredCars} selectedFilters={selectedElectricRangeFilters} onChange={handleElectricRangeFilterChange}/>
     </div>
   );
 };
