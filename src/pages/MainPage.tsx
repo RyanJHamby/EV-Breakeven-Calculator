@@ -18,8 +18,11 @@ export default function MainPage() {
         getAllCars().then((returnedCars) => { 
             setCars(returnedCars)
         });
-        setFilteredCars(cars);
     }, []);
+
+    useEffect(() => {
+        setFilteredCars(cars);
+    }, [cars]);
 
     const handleFiltersChange = (newFilteredCars: CarProps[]) => {
         setFilteredCars(newFilteredCars);
@@ -28,10 +31,12 @@ export default function MainPage() {
     return (
         <div>
             <h1>Explore Alternative Fuel Source Cars</h1>
-            <FilterSidebar unfilteredCars={cars} onChange={handleFiltersChange} />
-            <ul>
-                {displayFirstNCars(filteredCars, 10)}
-            </ul>
+            <div className="mainPage">
+                <FilterSidebar unfilteredCars={cars} onChange={handleFiltersChange} />
+                <ul>
+                    {displayFirstNCars(filteredCars, 30)}
+                </ul>
+            </div>
         </div>
     );
 };

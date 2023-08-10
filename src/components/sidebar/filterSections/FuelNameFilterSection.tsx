@@ -7,8 +7,9 @@ export const FuelNameFilterSection: FC<SidebarFilterSectionProps> = ({cars, sele
 
   return (
     <div>
+      <h3>Fuel Name</h3>
       {FuelNameFilterOptions.map((filterOption) => (
-        <label key={filterOption}>
+        <label key={filterOption} className="filterItem">
           <input
             type="checkbox"
             value={filterOption}

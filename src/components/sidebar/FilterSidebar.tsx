@@ -1,11 +1,10 @@
-import React, { useState, FC, useEffect } from 'react';
+import React, { FC, useState, useEffect } from 'react';
+import { FilterSidebarProps } from '../../pages/MainPage';
 import { CarProps } from '../Car';
-import { displayFirstNCars } from '../../utils/customCarsDisplayFunctions';
+import { ElectricRangeFilterSection } from './filterSections/ElectricRangeFilterSection';
+import { FuelNameFilterSection } from './filterSections/FuelNameFilterSection';
 import { ManufacturerFilterSection } from './filterSections/ManufacturerFilterSection';
 import { YearFilterSection } from './filterSections/YearFilterSection';
-import { FuelNameFilterSection } from './filterSections/FuelNameFilterSection';
-import { ElectricRangeFilterSection } from './filterSections/ElectricRangeFilterSection';
-import { FilterSidebarProps } from '../../pages/MainPage';
 
 export interface SidebarFilterSectionProps {
   cars: CarProps[];
@@ -19,12 +18,15 @@ export const FilterSidebar: FC<FilterSidebarProps> = ({ unfilteredCars, onChange
   const [selectedFuelNameFilters, setSelectedFuelNameFilters] = useState<string[]>([]);
   const [selectedElectricRangeFilters, setSelectedElectricRangeFilters] = useState<string[]>([]);
 
+  useEffect(() => {
+    updateCarsFilters();
+  }, [selectedManufacturerFilters, selectedYearFilters, selectedFuelNameFilters, selectedElectricRangeFilters]);
+
   const handleManufacturerFilterChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const filterValue = event.target.value;
     setSelectedManufacturerFilters((prevFilters) =>
       event.target.checked ? [...prevFilters, filterValue] : prevFilters.filter((filter) => filter !== filterValue)
     );
-    updateCarsFilters();
   };
 
   const handleYearFilterChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -32,7 +34,6 @@ export const FilterSidebar: FC<FilterSidebarProps> = ({ unfilteredCars, onChange
     setSelectedYearFilters((prevFilters) =>
       event.target.checked ? [...prevFilters, filterValue] : prevFilters.filter((filter) => filter !== filterValue)
     );
-    updateCarsFilters();
   };
 
   const handleFuelNameFilterChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -40,7 +41,6 @@ export const FilterSidebar: FC<FilterSidebarProps> = ({ unfilteredCars, onChange
     setSelectedFuelNameFilters((prevFilters) =>
       event.target.checked ? [...prevFilters, filterValue] : prevFilters.filter((filter) => filter !== filterValue)
     );
-    updateCarsFilters();
   };
 
   const handleElectricRangeFilterChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -48,7 +48,6 @@ export const FilterSidebar: FC<FilterSidebarProps> = ({ unfilteredCars, onChange
     setSelectedElectricRangeFilters((prevFilters) =>
       event.target.checked ? [...prevFilters, filterValue] : prevFilters.filter((filter) => filter !== filterValue)
     );
-    updateCarsFilters();
   };
   
   const updateCarsFilters = () => onChange(unfilteredCars.filter((car) => {

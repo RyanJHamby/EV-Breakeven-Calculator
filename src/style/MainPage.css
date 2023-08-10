@@ -1,3 +1,15 @@
+.mainPage {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: normal;
+    margin: 1rem;
+    padding: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 1rem;
+    background-color: #fff;
+}
+
 .carGrid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -12,11 +24,16 @@
 .filterSidebar {
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    align-items: center;
+    justify-content: normal;
+    align-items: normal;
     margin: 1rem;
     padding: 1rem;
     border: 1px solid #ccc;
     border-radius: 1rem;
     background-color: #fff;
+}
+
+.filterItem {
+    display: block;
+    margin-bottom: 5px;
 }

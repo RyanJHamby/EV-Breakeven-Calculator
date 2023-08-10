@@ -7,8 +7,9 @@ export const ElectricRangeFilterSection: FC<SidebarFilterSectionProps> = ({cars,
 
   return (
     <div>
+      <h3>Electric Range</h3>
       {electricRangeFilterOptions.map((filterOption) => (
-        <label key={filterOption}>
+        <label key={filterOption} className="listItem">
           <input
             type="checkbox"
             value={filterOption}
