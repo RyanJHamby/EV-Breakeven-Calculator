@@ -1,5 +1,3 @@
-import React from "react";
-
 export default function CalculatorPage() {
     return (
         <div>
@@ -7,4 +5,4 @@ export default function CalculatorPage() {
             <small>Calc Page</small>
         </div>
     );
-};
+}

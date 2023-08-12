@@ -15,9 +15,3 @@ export const router = createBrowserRouter([
     errorElement: <ErrorPage />,
   },
 ]);
-
-// export default function routes() {
-//   return <RouterProvider
-//             router={router}
-//   />
-// }

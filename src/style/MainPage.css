@@ -43,11 +43,29 @@
     flex-direction: column;
 }
 
-.sortbar{ 
+.sortbar { 
     margin-left: auto;
     width: 20%;
 }
 
-.sortSelect {
+.sortbarTopSection {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+.sortbarTopSection h3,
+.sortbarTopSection input[type="radio"] {
+    font-size: 14px;
+    white-space: nowrap;
+}
+
+.sortbarBottomSection {
     width: 100%;
+}
+.sortbarBottomSection select {
+    width: 100%;
+    /* Make the select expand to 100% width */
+    box-sizing: border-box;
+    /* Include padding and border in width */
 }

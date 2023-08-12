@@ -1,4 +1,4 @@
-import { FC, useState } from 'react';
+import { FC, useEffect, useState } from 'react';
 import { SidebarFilterSectionProps } from '../FilterSidebar';
   
 export const YearFilterSection: FC<SidebarFilterSectionProps> = ({cars, selectedFilters, onChange}): JSX.Element =>  {
@@ -7,11 +7,21 @@ export const YearFilterSection: FC<SidebarFilterSectionProps> = ({cars, selected
   const [clearAll, setClearAll] = useState(false);
 
   function clearCheckboxes() {
+    setClearAll(!clearAll);
     const checkboxes = document.querySelectorAll<HTMLInputElement>('.filterItem input[type="checkbox"]');
     checkboxes.forEach((checkbox) => {
         checkbox.checked = false;
     });
   }
+
+  useEffect(() => {
+    if (clearAll) {
+      const checkboxes = document.querySelectorAll<HTMLInputElement>('.filterItem input[type="checkbox"]');
+      checkboxes.forEach((checkbox) => {
+        checkbox.checked = false;
+      });
+    }
+  }, [clearAll]);
 
   return (
     <div>

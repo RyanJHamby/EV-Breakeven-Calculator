@@ -5,6 +5,7 @@ import { FilterSidebar } from "../components/sidebar/FilterSidebar";
 import { Sortbar } from "../components/sortbar/Sortbar";
 import { displayFirstNCars } from '../utils/customCarsDisplayFunctions';
 import "../style/MainPage.css";
+import { sortCarsByDirectionAndLabel } from "../utils/carListSortingFunctions";
 
 export interface FilterSidebarProps {
     unfilteredCars: CarProps[];
@@ -12,14 +13,15 @@ export interface FilterSidebarProps {
 }
 
 export interface SortbarProps {
-    onChange: (event: React.ChangeEvent<HTMLSelectElement>) => void;
+    onSortingLabelChange: (event: React.ChangeEvent<HTMLSelectElement>) => void;
+    onSortingDirectionChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
 export default function MainPage() {
     const [cars, setCars] = useState<CarProps[]>([]);
     const [filteredCars, setFilteredCars] = useState<CarProps[]>([]);
     const [sortType, setSortType] = useState<string>("manufacturer_name");
-    const [sortDirection, setSortDirection] = useState<string>("ascending");
+    const [sortDirection, setSortDirection] = useState<string>("descending");
 
     useEffect(() => {
         getAllCars().then((returnedCars) => { 
@@ -32,39 +34,20 @@ export default function MainPage() {
     }, [cars]);
 
     useEffect(() => {
-        if (sortDirection === "descending") {
-            filteredCars.sort((a, b) => {
-                if (sortType === "manufacturer_name") {
-                    return String(a.manufacturer_name).localeCompare(String(b.manufacturer_name));
-                } else if (sortType === "year") {
-                    return a.model_year - b.model_year;
-                } else if (sortType === "fuel_name") {
-                    return String(a.fuel_name).localeCompare(String(b.fuel_name));
-                } else {
-                    return 0;
-                }
-            })
-        } else {
-            filteredCars.sort((a, b) => {
-                if (sortType === "manufacturer_name") {
-                    return String(b.manufacturer_name).localeCompare(String(a.manufacturer_name));
-                } else if (sortType === "year") {
-                    return b.model_year - a.model_year;
-                } else if (sortType === "fuel_name") {
-                    return String(b.fuel_name).localeCompare(String(a.fuel_name));
-                } else {
-                    return 0;
-                }
-            })
-        }
-    }, [sortType, filteredCars]);
+        sortCarsByDirectionAndLabel(filteredCars, sortDirection, sortType);
+    }, [sortType, sortDirection, filteredCars]);
 
     const handleFiltersChange = (newFilteredCars: CarProps[]) => {
         setFilteredCars(newFilteredCars);
     }
 
-    const handleSortTypeChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
+    const handleSortingLabelChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
         setSortType(event.target.value);
+    }
+
+    const handleSortingDirectionChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+        setSortDirection(event.target.value);
+        console.log(sortDirection)
     }
     
     return (
@@ -73,7 +56,7 @@ export default function MainPage() {
             <div className="mainPage">
                 <FilterSidebar unfilteredCars={cars} onChange={handleFiltersChange} />
                 <div className="sortersGridStack">
-                    <Sortbar onChange={handleSortTypeChange} />
+                    <Sortbar onSortingLabelChange={handleSortingLabelChange} onSortingDirectionChange={handleSortingDirectionChange} />
                     <ul>
                         {displayFirstNCars(filteredCars, 30)}
                     </ul>
@@ -81,4 +64,4 @@ export default function MainPage() {
             </div>
         </div>
     );
-};
+}
