@@ -37,3 +37,17 @@
     display: block;
     margin-bottom: 5px;
 }
+
+.sortersGridStack {
+    display: flex;
+    flex-direction: column;
+}
+
+.sortbar{ 
+    margin-left: auto;
+    width: 20%;
+}
+
+.sortSelect {
+    width: 100%;
+}
