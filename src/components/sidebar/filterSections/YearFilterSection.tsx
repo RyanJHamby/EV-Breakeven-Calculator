@@ -1,14 +1,39 @@
-import { FC } from 'react';
+import { FC, useEffect, useState } from 'react';
 import { SidebarFilterSectionProps } from '../FilterSidebar';
   
 export const YearFilterSection: FC<SidebarFilterSectionProps> = ({cars, selectedFilters, onChange}): JSX.Element =>  {
 
   const yearFilterOptions: string[] = [...new Set(cars.map((car) => String(car.model_year)))];
+  const [clearAll, setClearAll] = useState(false);
+
+  function clearCheckboxes() {
+    setClearAll(!clearAll);
+    const checkboxes = document.querySelectorAll<HTMLInputElement>('.filterItem input[type="checkbox"]');
+    checkboxes.forEach((checkbox) => {
+        checkbox.checked = false;
+    });
+  }
+
+  useEffect(() => {
+    if (clearAll) {
+      const checkboxes = document.querySelectorAll<HTMLInputElement>('.filterItem input[type="checkbox"]');
+      checkboxes.forEach((checkbox) => {
+        checkbox.checked = false;
+      });
+    }
+  }, [clearAll]);
 
   return (
     <div>
       <h3>Year</h3>
-      {yearFilterOptions.map((filterOption) => (
+      <input
+        type="checkbox"
+        value={"Clear all Year Filters"}
+        checked={clearAll}
+        onChange={clearCheckboxes}
+      />
+      {yearFilterOptions.filter((filterOption) => filterOption) // filter out undefined strings
+        .map((filterOption) => (
         <label key={filterOption} className="filterItem">
           <input
             type="checkbox"

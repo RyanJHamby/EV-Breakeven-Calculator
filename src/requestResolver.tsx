@@ -1,5 +1,5 @@
 export async function resolve<T>(promise: Promise<T>) {
-  const resolved: { data: T | null; error: any | null } = {
+  const resolved: { data: T | null; error: Error | null } = {
     data: null,
     error: null,
   };
@@ -7,7 +7,7 @@ export async function resolve<T>(promise: Promise<T>) {
   try {
     resolved.data = await promise;
   } catch (e) {
-    resolved.error = e;
+    resolved.error = e as Error;
   }
 
   return resolved;
