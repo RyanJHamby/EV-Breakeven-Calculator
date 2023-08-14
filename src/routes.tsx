@@ -1,14 +1,16 @@
-import { createBrowserRouter } from "react-router-dom";
-import MainPage from "./pages/MainPage";
-import CalculatorPage from "./pages/CalculatorPage";
+import { Route, BrowserRouter as Router, Routes } from 'react-router-dom';
+import Navbar from './components/Navbar';
+import CalculatorPage from './pages/CalculatorPage';
+import MainPage from './pages/MainPage';
 
-export const router = createBrowserRouter([
-  {
-    path: "/",
-    element: <MainPage />,
-  },
-    {
-    path: "/emissions-info",
-    element: <CalculatorPage />
-  },
-]);
+export default function App() {
+  return (
+    <Router>
+      <Navbar />
+      <Routes>
+        <Route path="/" element={<MainPage />} />
+        <Route path="/emissions-info" element={<CalculatorPage />} />
+      </Routes>
+    </Router>
+  );
+}

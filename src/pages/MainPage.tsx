@@ -52,7 +52,6 @@ export default function MainPage() {
     
     return (
         <div>
-            <h1>Explore Alternative Fuel Source Cars</h1>
             <div className="mainPage">
                 <FilterSidebar unfilteredCars={cars} onChange={handleFiltersChange} />
                 <div className="sortersGridStack">
