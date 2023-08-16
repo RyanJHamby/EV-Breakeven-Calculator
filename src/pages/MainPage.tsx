@@ -6,6 +6,7 @@ import { Sortbar } from "../components/sortbar/Sortbar";
 import { displayFirstNCars } from '../utils/customCarsDisplayFunctions';
 import "../style/MainPage.css";
 import { sortCarsByDirectionAndLabel } from "../utils/carListSortingFunctions";
+import { SearchBar } from "../components/Searchbar";
 
 export interface FilterSidebarProps {
     unfilteredCars: CarProps[];
@@ -22,6 +23,7 @@ export default function MainPage() {
     const [filteredCars, setFilteredCars] = useState<CarProps[]>([]);
     const [sortType, setSortType] = useState<string>("manufacturer_name");
     const [sortDirection, setSortDirection] = useState<string>("descending");
+    const [searchTerm, setSearchTerm] = useState<string>("");
 
     useEffect(() => {
         getAllCars().then((returnedCars) => { 
@@ -47,7 +49,10 @@ export default function MainPage() {
 
     const handleSortingDirectionChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         setSortDirection(event.target.value);
-        console.log(sortDirection)
+    }
+
+    const handleSearch = (searchTerm: string) => {
+        setSearchTerm(searchTerm);
     }
     
     return (
@@ -55,6 +60,7 @@ export default function MainPage() {
             <div className="mainPage">
                 <FilterSidebar unfilteredCars={cars} onChange={handleFiltersChange} />
                 <div className="sortersGridStack">
+                    <SearchBar onSearch={handleSearch} />
                     <Sortbar onSortingLabelChange={handleSortingLabelChange} onSortingDirectionChange={handleSortingDirectionChange} />
                     <ul>
                         {displayFirstNCars(filteredCars, 30)}
