@@ -146,3 +146,12 @@ button {
     border-radius: 5px;
     cursor: pointer;
 }
+
+.gridTopBar {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    gap: 20px;
+}

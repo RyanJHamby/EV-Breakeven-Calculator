@@ -60,8 +60,10 @@ export default function MainPage() {
             <div className="mainPage">
                 <FilterSidebar unfilteredCars={cars} onChange={handleFiltersChange} />
                 <div className="sortersGridStack">
-                    <SearchBar onSearch={handleSearch} />
-                    <Sortbar onSortingLabelChange={handleSortingLabelChange} onSortingDirectionChange={handleSortingDirectionChange} />
+                    <div className="gridTopBar">
+                        <SearchBar onSearch={handleSearch} />
+                        <Sortbar onSortingLabelChange={handleSortingLabelChange} onSortingDirectionChange={handleSortingDirectionChange} />
+                    </div>
                     <ul>
                         {displayFirstNCars(filteredCars, 30)}
                     </ul>
