@@ -1,4 +1,4 @@
-import { MileageBreakevenCalculator } from '../components/MileageBreakevenCalculator';
+import { MileageBreakevenCalculator } from '../components/calculator/MileageBreakevenCalculator';
 
 export default function CalculatorPage() {
     return (

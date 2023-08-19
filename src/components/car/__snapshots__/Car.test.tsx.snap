@@ -1,0 +1,37 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`changes the class when hovered 1`] = `
+<div
+  className="mainPageCar"
+>
+  <h3
+    className="carModelTitle"
+  >
+    Test-manufacturer Test-model
+  </h3>
+  <div
+    className="carShortInfoSection"
+  >
+    <div
+      className="carShortInfoSectionItem"
+    >
+      2023
+    </div>
+    <div
+      className="carShortInfoSectionItem"
+    >
+      Test-fuel
+    </div>
+    <div
+      className="carShortInfoSectionItem"
+    >
+      test-range mi range
+    </div>
+  </div>
+  <img
+    alt="car"
+    className="carThumbnail"
+    src="test-url"
+  />
+</div>
+`;

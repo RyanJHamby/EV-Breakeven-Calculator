@@ -1,12 +1,12 @@
 import { useEffect, useState } from "react";
 import getAllCars from "../api";
-import { CarProps } from "../components/Car";
+import { CarProps } from "../components/car/Car";
 import { FilterSidebar } from "../components/sidebar/FilterSidebar";
 import { Sortbar } from "../components/sortbar/Sortbar";
 import { displayFirstNCars } from '../utils/customCarsDisplayFunctions';
 import "../style/MainPage.css";
 import { sortCarsByDirectionAndLabel } from "../utils/carListSortingFunctions";
-import { SearchBar } from "../components/Searchbar";
+import { SearchBar } from "../components/searchbar/Searchbar";
 
 export interface FilterSidebarProps {
     unfilteredCars: CarProps[];

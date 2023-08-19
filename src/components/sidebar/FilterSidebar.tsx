@@ -1,6 +1,6 @@
 import React, { FC, useState, useEffect } from 'react';
 import { FilterSidebarProps } from '../../pages/MainPage';
-import { CarProps } from '../Car';
+import { CarProps } from '../car/Car';
 import { ElectricRangeFilterSection } from './filterSections/ElectricRangeFilterSection';
 import { FuelNameFilterSection } from './filterSections/FuelNameFilterSection';
 import { ManufacturerFilterSection } from './filterSections/ManufacturerFilterSection';

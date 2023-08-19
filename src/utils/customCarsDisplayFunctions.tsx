@@ -1,4 +1,4 @@
-import { Car, CarProps } from "../components/Car";
+import { Car, CarProps } from "../components/car/Car";
 
 export const displayFirstNCars = (data: CarProps[], numToShow: number) => {
     const carsToShow = data.slice(0, numToShow);

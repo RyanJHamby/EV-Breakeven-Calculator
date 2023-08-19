@@ -7,7 +7,7 @@ interface SearchBarProps {
     setSearchTerm: React.Dispatch<React.SetStateAction<string>>;
 }
 
-export const SearchBar: React.FC<SearchBarProps> = ({ searchTerm, onSearch, setSearchTerm }) => {
+export const SearchBar: FC<SearchBarProps> = ({ searchTerm, onSearch, setSearchTerm }) => {
     const [isClicked, setIsClicked] = useState(false);
 
     const handleSearch = () => {
@@ -36,7 +36,7 @@ export const SearchBar: React.FC<SearchBarProps> = ({ searchTerm, onSearch, setS
             />
             <button 
                 onClick={handleSearch}
-                style={{ backgroundColor: isClicked ? '#333' : '#007bff' }}
+                style={{ backgroundColor: isClicked ? '#333' : '#333' }}
             >
                 Search
             </button>

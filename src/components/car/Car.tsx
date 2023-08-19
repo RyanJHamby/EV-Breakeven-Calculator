@@ -1,5 +1,5 @@
 import React, { FC } from "react";
-import "../style/Car.css";
+import "../../style/Car.css";
 
 export type CarProps = {
     id: number;

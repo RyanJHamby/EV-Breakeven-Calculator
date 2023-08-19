@@ -1,4 +1,4 @@
-import { CarProps } from "../components/Car";
+import { CarProps } from "../components/car/Car";
 
 export const sortCarsByDirectionAndLabel = (filteredCars: CarProps[], sortingDirection: string, sortingLabel: string) => {
     const compareFunction = (a: CarProps, b: CarProps) => {
