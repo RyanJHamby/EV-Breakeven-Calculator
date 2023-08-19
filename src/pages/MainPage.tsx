@@ -51,22 +51,22 @@ export default function MainPage() {
         setSortDirection(event.target.value);
     }
 
-    const handleSearch = (searchTerm: string) => {
-        setSearchTerm(searchTerm);
+    const handleSearch = () => {
+        console.log(searchTerm)
     }
-    
+
     return (
         <div>
             <div className="mainPage">
                 <FilterSidebar unfilteredCars={cars} onChange={handleFiltersChange} />
                 <div className="sortersGridStack">
                     <div className="gridTopBar">
-                        <SearchBar onSearch={handleSearch} />
+                        <SearchBar searchTerm={searchTerm} onSearch={handleSearch} setSearchTerm={setSearchTerm} />
                         <Sortbar onSortingLabelChange={handleSortingLabelChange} onSortingDirectionChange={handleSortingDirectionChange} />
                     </div>
-                    <ul>
+                    <div className="carsGrid">
                         {displayFirstNCars(filteredCars, 30)}
-                    </ul>
+                    </div>
                 </div>
             </div>
         </div>
