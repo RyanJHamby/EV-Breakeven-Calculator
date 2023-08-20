@@ -2,7 +2,7 @@ import React from 'react'
 import renderer from 'react-test-renderer';
 import { Car } from "./Car"
 
-it('changes the class when hovered', () => {
+it('renders car component', () => {
     const component = renderer.create(
         <Car 
             obj={{

@@ -6,15 +6,17 @@ import React from "react";
 
 export default function App() {
     return (
-        <Router>
+        <div>
             <div className="mainPageTitle">
                 <h3>Explore Alternative Fuel Source Cars</h3>
             </div>
-            <Navbar />
-            <Routes>
-                <Route path="/" element={<MainPage />} />
-                <Route path="/emissions-info" element={<CalculatorPage />} />
-            </Routes>
-        </Router>
+            <Router>
+                <Navbar />
+                <Routes>
+                    <Route path="/" element={<MainPage />} />
+                    <Route path="/emissions-info" element={<CalculatorPage />} />
+                </Routes>
+            </Router>
+        </div>
     );
 }
