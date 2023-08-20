@@ -7,6 +7,7 @@ import { displayFirstNCars } from '../utils/customCarsDisplayFunctions';
 import "../style/MainPage.css";
 import { sortCarsByDirectionAndLabel } from "../utils/carListSortingFunctions";
 import { SearchBar } from "../components/searchbar/Searchbar";
+import React from 'react'
 
 export interface FilterSidebarProps {
     unfilteredCars: CarProps[];

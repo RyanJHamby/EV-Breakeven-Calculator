@@ -1,5 +1,6 @@
 import { FC, useState } from "react";
-import "../style/MainPage.css";
+import React from 'react';
+import "../../style/MainPage.css";
 
 interface SearchBarProps {
     searchTerm: string;
