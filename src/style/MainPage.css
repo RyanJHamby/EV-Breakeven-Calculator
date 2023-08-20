@@ -1,29 +1,24 @@
 .mainPage {
     display: flex;
     flex-direction: row;
-    justify-content: center;
-    align-items: normal;
     margin: 1rem;
-    padding: 1rem;
-    border: 1px solid #ccc;
     border-radius: 1rem;
-    background-color: #fff;
+    background: linear-gradient(to bottom right, #333, #eee);
 }
 
 .carGrid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    grid-gap: 1rem;
     margin: 1rem;
-    padding: 1rem;
     border: 1px solid #ccc;
     border-radius: 1rem;
-    background-color: #fff;
+    background: linear-gradient(to right, #007bff, #00d1e0);
 }
 
 .filterSidebar {
     display: flex;
     flex-direction: column;
+    flex-wrap: wrap;
     justify-content: flex-start;
     align-items: normal;
     margin: 1rem;
@@ -31,8 +26,6 @@
     border: 1px solid #ccc;
     border-radius: 1rem;
     background-color: #fff;
-    max-height: calc(100vh - 2rem);
-    overflow-y: auto;
 }
 .filterItem {
     display: block;
@@ -40,10 +33,11 @@
 }
 
 .mainPageTitle {
-    font-size: 2rem;
+    font-size: 1rem;
     font-weight: bold;
     margin: 0;
     padding: 1rem;
+    padding-left: 2rem;
     text-align: left;
     color: #333;
     background-color: #f8f8f8;
@@ -63,7 +57,6 @@
     background: linear-gradient(to right, #007bff, #00d1e0);
     color: white;
     box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.1);
-    transition: background 0.3s;
 }
 
 .navbar:hover {
@@ -96,11 +89,13 @@
 .sortersGridStack {
     display: flex;
     flex-direction: column;
+    max-width: 100%;
 }
 
-.sortbar { 
-    margin-left: auto;
+.sortbar {
     width: 20%;
+    max-width: 20%;
+    box-sizing: border-box;
 }
 
 .sortbarTopSection {
@@ -109,6 +104,7 @@
     justify-content: space-between;
     align-items: center;
 }
+
 .sortbarTopSection h3,
 .sortbarTopSection input[type="radio"] {
     font-size: 14px;
@@ -117,8 +113,48 @@
 
 .sortbarBottomSection {
     width: 100%;
+    box-sizing: border-box;
 }
+
 .sortbarBottomSection select {
     width: 100%;
+}
+
+.search-bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 80%;
     box-sizing: border-box;
+    gap: 10px;
+}
+
+input {
+    flex: 1;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+button {
+    padding: 8px 15px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.gridTopBar {
+    display: flex;
+    flex-direction: row;
+    width: 90%;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+    gap: 10px;
+}
+
+.carsGrid {
+    width: 100%;
 }

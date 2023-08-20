@@ -1,11 +1,13 @@
 import { useEffect, useState } from "react";
 import getAllCars from "../api";
-import { CarProps } from "../components/Car";
+import { CarProps } from "../components/car/Car";
 import { FilterSidebar } from "../components/sidebar/FilterSidebar";
 import { Sortbar } from "../components/sortbar/Sortbar";
 import { displayFirstNCars } from '../utils/customCarsDisplayFunctions';
 import "../style/MainPage.css";
 import { sortCarsByDirectionAndLabel } from "../utils/carListSortingFunctions";
+import { SearchBar } from "../components/searchbar/Searchbar";
+import React from 'react'
 
 export interface FilterSidebarProps {
     unfilteredCars: CarProps[];
@@ -22,6 +24,7 @@ export default function MainPage() {
     const [filteredCars, setFilteredCars] = useState<CarProps[]>([]);
     const [sortType, setSortType] = useState<string>("manufacturer_name");
     const [sortDirection, setSortDirection] = useState<string>("descending");
+    const [searchTerm, setSearchTerm] = useState<string>("");
 
     useEffect(() => {
         getAllCars().then((returnedCars) => { 
@@ -47,18 +50,24 @@ export default function MainPage() {
 
     const handleSortingDirectionChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         setSortDirection(event.target.value);
-        console.log(sortDirection)
     }
-    
+
+    const handleSearch = () => {
+        console.log(searchTerm)
+    }
+
     return (
         <div>
             <div className="mainPage">
                 <FilterSidebar unfilteredCars={cars} onChange={handleFiltersChange} />
                 <div className="sortersGridStack">
-                    <Sortbar onSortingLabelChange={handleSortingLabelChange} onSortingDirectionChange={handleSortingDirectionChange} />
-                    <ul>
+                    <div className="gridTopBar">
+                        <SearchBar searchTerm={searchTerm} onSearch={handleSearch} setSearchTerm={setSearchTerm} />
+                        <Sortbar onSortingLabelChange={handleSortingLabelChange} onSortingDirectionChange={handleSortingDirectionChange} />
+                    </div>
+                    <div className="carsGrid">
                         {displayFirstNCars(filteredCars, 30)}
-                    </ul>
+                    </div>
                 </div>
             </div>
         </div>

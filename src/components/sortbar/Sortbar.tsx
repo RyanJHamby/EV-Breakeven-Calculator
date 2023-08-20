@@ -1,4 +1,5 @@
 import { FC } from "react";
+import React from 'react';
 import { SortbarProps } from "../../pages/MainPage";
 import "../../style/MainPage.css";
 

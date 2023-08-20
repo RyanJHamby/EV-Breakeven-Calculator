@@ -1,4 +1,5 @@
 import { FC } from 'react';
+import React from 'react';
 import { SidebarFilterSectionProps } from '../FilterSidebar';
 
 export const ElectricRangeFilterSection: FC<SidebarFilterSectionProps> = ({cars, selectedFilters, onChange}): JSX.Element => {

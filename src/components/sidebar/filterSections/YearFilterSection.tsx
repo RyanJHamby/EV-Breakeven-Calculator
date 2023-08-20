@@ -1,4 +1,5 @@
 import { FC, useEffect, useState } from 'react';
+import React from 'react';
 import { SidebarFilterSectionProps } from '../FilterSidebar';
   
 export const YearFilterSection: FC<SidebarFilterSectionProps> = ({cars, selectedFilters, onChange}): JSX.Element =>  {

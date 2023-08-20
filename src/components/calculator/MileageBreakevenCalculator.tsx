@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import '../style/CalculatorPage.css';
+import '../../style/CalculatorPage.css';
 
 export const MileageBreakevenCalculator: React.FC = () => {
     const [gasMpg, setGasMpg] = useState<number | ''>('');
