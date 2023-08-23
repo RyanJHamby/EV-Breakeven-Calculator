@@ -3,7 +3,7 @@ import getAllCars from "../api";
 import { CarProps } from "../components/car/Car";
 import { FilterSidebar } from "../components/sidebar/FilterSidebar";
 import { Sortbar } from "../components/sortbar/Sortbar";
-import { displayFirstNCars } from '../utils/customCarsDisplayFunctions';
+import { displayCarsByPage } from '../utils/customCarsDisplayFunctions';
 import "../style/MainPage.css";
 import { sortCarsByDirectionAndLabel } from "../utils/carListSortingFunctions";
 import { SearchBar } from "../components/searchbar/Searchbar";
@@ -34,6 +34,7 @@ export default function MainPage() {
 
     useEffect(() => {
         setFilteredCars(cars);
+        console.log(cars[0]);
     }, [cars]);
 
     useEffect(() => {
@@ -66,7 +67,7 @@ export default function MainPage() {
                         <Sortbar onSortingLabelChange={handleSortingLabelChange} onSortingDirectionChange={handleSortingDirectionChange} />
                     </div>
                     <div className="carsGrid">
-                        {displayFirstNCars(filteredCars, 30)}
+                        {displayCarsByPage(filteredCars, 30, 1)}
                     </div>
                 </div>
             </div>
