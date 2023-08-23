@@ -1,5 +1,3 @@
 {
-    "presets": [
-        ["presetName", { "option": "value" }]
-    ]
+    "presets": ["es2015", "stage-0", "react"],
 }

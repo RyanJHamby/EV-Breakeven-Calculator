@@ -67,7 +67,7 @@ export default function MainPage() {
                         <Sortbar onSortingLabelChange={handleSortingLabelChange} onSortingDirectionChange={handleSortingDirectionChange} />
                     </div>
                     <div className="carsGrid">
-                        {displayCarsByPage(filteredCars, 30, 0)}
+                        {displayCarsByPage(filteredCars, 30, 1)}
                     </div>
                 </div>
             </div>
