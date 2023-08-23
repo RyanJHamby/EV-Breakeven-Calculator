@@ -1,5 +1,4 @@
 import React from 'react';
-// import { render, fireEvent } from '@testing-library/react';
 import renderer from 'react-test-renderer';
 import { ElectricRangeFilterSection } from './ElectricRangeFilterSection';
 import { CarProps } from '../../car/Car';

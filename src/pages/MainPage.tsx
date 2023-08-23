@@ -34,6 +34,7 @@ export default function MainPage() {
 
     useEffect(() => {
         setFilteredCars(cars);
+        console.log(cars[0]);
     }, [cars]);
 
     useEffect(() => {
