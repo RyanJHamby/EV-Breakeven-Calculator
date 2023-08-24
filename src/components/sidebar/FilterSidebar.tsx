@@ -50,14 +50,18 @@ export const FilterSidebar: FC<FilterSidebarProps> = ({ unfilteredCars, onChange
     );
   };
   
-  const updateCarsFilters = () => onChange(unfilteredCars.filter((car) => {
+  const updateCarsFilters = () => {
+    const filteredCars = unfilteredCars.filter((car) => {
       return (
         (selectedManufacturerFilters.length === 0 || selectedManufacturerFilters.includes(car.manufacturer_name)) &&
         (selectedYearFilters.length === 0 || selectedYearFilters.includes(String(car.model_year))) &&
         (selectedFuelNameFilters.length === 0 || selectedFuelNameFilters.includes(String(car.fuel_name))) &&
         (selectedElectricRangeFilters.length === 0 || selectedElectricRangeFilters.includes(String(car.electric_range)))
       );
-  }));
+    });
+
+    onChange(filteredCars);
+  };
 
   return (
     <div className="filterSidebar">
