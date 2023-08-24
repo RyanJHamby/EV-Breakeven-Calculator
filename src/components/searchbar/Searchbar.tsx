@@ -4,17 +4,12 @@ import "../../style/MainPage.css";
 
 interface SearchBarProps {
     searchTerm: string;
-    onSearch: () => void;
+    onSearch: (inputSearchTerm: string) => void;
     setSearchTerm: React.Dispatch<React.SetStateAction<string>>;
 }
 
 export const SearchBar: FC<SearchBarProps> = ({ searchTerm, onSearch, setSearchTerm }) => {
     const [isClicked, setIsClicked] = useState(false);
-
-    const handleSearch = () => {
-        onSearch();
-        handleButtonClick();
-    };
 
     const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         setSearchTerm(e.target.value);
@@ -22,6 +17,7 @@ export const SearchBar: FC<SearchBarProps> = ({ searchTerm, onSearch, setSearchT
 
     const handleButtonClick = () => {
         setIsClicked(true);
+        onSearch(searchTerm);
         setTimeout(() => {
             setIsClicked(false);
         }, 100);
@@ -36,7 +32,7 @@ export const SearchBar: FC<SearchBarProps> = ({ searchTerm, onSearch, setSearchT
                 onChange={handleInputChange}
             />
             <button 
-                onClick={handleSearch}
+                onClick={handleButtonClick}
                 style={{ backgroundColor: isClicked ? '#333' : '#333' }}
             >
                 Search

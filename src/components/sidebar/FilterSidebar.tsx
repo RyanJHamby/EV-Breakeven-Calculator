@@ -29,13 +29,16 @@ export const FilterSidebar: FC<FilterSidebarProps> = ({ unfilteredCars, onChange
     );
   };
 
-  const handleYearFilterChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const filterValue = event.target.value;
-    setSelectedYearFilters((prevFilters) =>
-      event.target.checked ? [...prevFilters, filterValue] : prevFilters.filter((filter) => filter !== filterValue)
-    );
-  };
-
+const handleYearFilterChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+  const filterValue = event.target.value;
+  setSelectedYearFilters((prevFilters) => {
+    const updatedFilters = event.target.checked
+      ? [...prevFilters, filterValue]
+      : prevFilters.filter((filter) => filter !== filterValue);
+    
+    return updatedFilters.slice().sort((a, b) => parseInt(a) - parseInt(b));
+  });
+};
   const handleFuelNameFilterChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const filterValue = event.target.value;
     setSelectedFuelNameFilters((prevFilters) =>

@@ -1,9 +1,11 @@
-import React, { FC, useEffect, useState } from 'react';
+import React, { FC, useMemo } from 'react';
 import { SidebarFilterSectionProps } from '../FilterSidebar';
 
 export const YearFilterSection: FC<SidebarFilterSectionProps> = ({cars, selectedFilters, onChange}): JSX.Element =>  {
 
-  const yearFilterOptions: string[] = [...new Set(cars.map((car) => String(car.model_year)))];
+  const yearFilterOptions = useMemo(() => {
+    return [...new Set(cars.map((car) => String(car.model_year)))];
+  }, [cars]);
 
   return (
     <div>
