@@ -158,3 +158,8 @@ button {
 .carsGrid {
     width: 100%;
 }
+
+.sortDirectionLabel {
+    display: flex;
+    flex-direction: row;
+}

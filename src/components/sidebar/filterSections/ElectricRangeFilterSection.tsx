@@ -1,10 +1,11 @@
-import { FC } from 'react';
-import React from 'react';
+import React, { FC, useMemo } from 'react';
 import { SidebarFilterSectionProps } from '../FilterSidebar';
 
 export const ElectricRangeFilterSection: FC<SidebarFilterSectionProps> = ({cars, selectedFilters, onChange}): JSX.Element => {
 
-  const electricRangeFilterOptions: string[] = [...new Set(cars.map((car) => car.electric_range))];
+  const electricRangeFilterOptions = useMemo(() => {
+    return [...new Set(cars.map((car) => String(car.electric_range)))];
+  }, [cars]);
 
   return (
     <div>

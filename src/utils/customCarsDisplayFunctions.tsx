@@ -11,9 +11,9 @@ export const displayCarsByPage = (data: CarProps[], itemsPerPage: number, curren
 
     return (
         <div className="carGrid">
-        {carsToShow.map((car, index) => (
-            <Car key={index} obj={car} />
-        ))}
+            {carsToShow.map((car) => (
+                <Car key={car.id} obj={car} />
+            ))}
         </div>
     );
 };

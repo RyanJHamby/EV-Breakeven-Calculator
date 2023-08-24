@@ -1,10 +1,11 @@
-import { FC } from 'react';
-import React from 'react';
+import React, { FC, useMemo } from 'react';
 import { SidebarFilterSectionProps } from '../FilterSidebar';
 
 export const FuelNameFilterSection: FC<SidebarFilterSectionProps> = ({cars, selectedFilters, onChange}): JSX.Element => {
 
-  const FuelNameFilterOptions: string[] = [...new Set(cars.map((car) => car.fuel_name))];
+  const FuelNameFilterOptions = useMemo(() => {
+    return [...new Set(cars.map((car) => String(car.fuel_name)))];
+  }, [cars]);
 
   return (
     <div>

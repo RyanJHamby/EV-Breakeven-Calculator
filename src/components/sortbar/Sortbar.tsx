@@ -13,8 +13,25 @@ export const Sortbar: FC<SortbarProps> = ({ onSortingLabelChange, onSortingDirec
         <div className="sortbar">
             <div className="sortbarTopSection">
                 <h3>Sort By:</h3>
-                <input type="radio" name="sortOrder" value="descending" defaultChecked onChange={handleSortingDirectionChange} /> Descending
-                <input type="radio" name="sortOrder" value="ascending" onChange={handleSortingDirectionChange} /> Ascending
+                <label className="sortDirectionLabel">
+                    <input 
+                        type="radio"
+                        name="sortOrder"
+                        value="descending"
+                        defaultChecked
+                        onChange={handleSortingDirectionChange}
+                    />
+                    Descending
+                </label>
+                <label className="sortDirectionLabel">
+                    <input
+                        type="radio"
+                        name="sortOrder"
+                        value="ascending"
+                        onChange={handleSortingDirectionChange}
+                    />
+                    Ascending
+                </label>
             </div>
             <div className="sortbarBottomSection">
                 <select onChange={onSortingLabelChange}>

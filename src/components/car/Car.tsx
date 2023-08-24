@@ -13,7 +13,6 @@ export type CarProps = {
 }
 
 export const Car: FC<{ obj: CarProps }> = (props): JSX.Element => {
-    console.log("Car component rendered")
     const capitalizeWords = (input: string) => {
         if (input) {
             const processedWords = input.split(" ").map((word) => {

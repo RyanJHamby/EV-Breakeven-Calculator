@@ -29,13 +29,16 @@ export const FilterSidebar: FC<FilterSidebarProps> = ({ unfilteredCars, onChange
     );
   };
 
-  const handleYearFilterChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const filterValue = event.target.value;
-    setSelectedYearFilters((prevFilters) =>
-      event.target.checked ? [...prevFilters, filterValue] : prevFilters.filter((filter) => filter !== filterValue)
-    );
-  };
-
+const handleYearFilterChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+  const filterValue = event.target.value;
+  setSelectedYearFilters((prevFilters) => {
+    const updatedFilters = event.target.checked
+      ? [...prevFilters, filterValue]
+      : prevFilters.filter((filter) => filter !== filterValue);
+    
+    return updatedFilters.slice().sort((a, b) => parseInt(a) - parseInt(b));
+  });
+};
   const handleFuelNameFilterChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const filterValue = event.target.value;
     setSelectedFuelNameFilters((prevFilters) =>
@@ -50,14 +53,18 @@ export const FilterSidebar: FC<FilterSidebarProps> = ({ unfilteredCars, onChange
     );
   };
   
-  const updateCarsFilters = () => onChange(unfilteredCars.filter((car) => {
+  const updateCarsFilters = () => {
+    const filteredCars = unfilteredCars.filter((car) => {
       return (
         (selectedManufacturerFilters.length === 0 || selectedManufacturerFilters.includes(car.manufacturer_name)) &&
         (selectedYearFilters.length === 0 || selectedYearFilters.includes(String(car.model_year))) &&
         (selectedFuelNameFilters.length === 0 || selectedFuelNameFilters.includes(String(car.fuel_name))) &&
         (selectedElectricRangeFilters.length === 0 || selectedElectricRangeFilters.includes(String(car.electric_range)))
       );
-  }));
+    });
+
+    onChange(filteredCars);
+  };
 
   return (
     <div className="filterSidebar">

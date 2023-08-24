@@ -1,13 +1,12 @@
-import { useEffect, useState } from "react";
-import getAllCars from "../api";
+import React, { useEffect, useState } from "react";
 import { CarProps } from "../components/car/Car";
 import { FilterSidebar } from "../components/sidebar/FilterSidebar";
 import { Sortbar } from "../components/sortbar/Sortbar";
 import { displayCarsByPage } from '../utils/customCarsDisplayFunctions';
-import "../style/MainPage.css";
 import { sortCarsByDirectionAndLabel } from "../utils/carListSortingFunctions";
 import { SearchBar } from "../components/searchbar/Searchbar";
-import React from 'react'
+import getAllCars from "../api";
+import "../style/MainPage.css";
 
 export interface FilterSidebarProps {
     unfilteredCars: CarProps[];
@@ -34,7 +33,6 @@ export default function MainPage() {
 
     useEffect(() => {
         setFilteredCars(cars);
-        console.log(cars[0]);
     }, [cars]);
 
     useEffect(() => {
@@ -53,8 +51,17 @@ export default function MainPage() {
         setSortDirection(event.target.value);
     }
 
-    const handleSearch = () => {
+    const handleSearch = (inputSearchTerm: string) => {
+        setSearchTerm(inputSearchTerm);
         console.log(searchTerm)
+        const filteredCars = cars.filter((car) => {
+            return (
+                car.manufacturer_name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+                car.model.toLowerCase().includes(searchTerm.toLowerCase()) ||
+                car.fuel_name.toLowerCase().includes(searchTerm.toLowerCase())
+            );
+        });
+        setFilteredCars(filteredCars);
     }
 
     return (
