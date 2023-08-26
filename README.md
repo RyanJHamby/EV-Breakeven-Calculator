@@ -1,6 +1,6 @@
 ## Check it out!
 
-[Public website link](https://elegant-strudel-f64bcd.netlify.app/) (hosted on Netlify)
+[Public website link](https://elegant-strudel-f64bcd.netlify.app/){:target="_blank"}  (hosted on Netlify)
 
 ## How I worked on this project
 
