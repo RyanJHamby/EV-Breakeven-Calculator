@@ -24,6 +24,7 @@ export default function MainPage() {
     const [sortType, setSortType] = useState<string>("manufacturer_name");
     const [sortDirection, setSortDirection] = useState<string>("descending");
     const [searchTerm, setSearchTerm] = useState<string>("");
+    const [carResultsPageNumber, setCarResultsPageNumber] = useState<number>(1);
 
     useEffect(() => {
         getAllCars().then((returnedCars) => { 
@@ -53,12 +54,15 @@ export default function MainPage() {
 
     const handleSearch = (inputSearchTerm: string) => {
         setSearchTerm(inputSearchTerm);
-        console.log(searchTerm)
         const filteredCars = cars.filter((car) => {
+            if (!searchTerm) {
+                return true;
+            }
             return (
-                car.manufacturer_name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                car.model.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                car.fuel_name.toLowerCase().includes(searchTerm.toLowerCase())
+                car.manufacturer_name && car.manufacturer_name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+                car.model && car.model.toLowerCase().includes(searchTerm.toLowerCase()) ||
+                car.fuel_name && car.fuel_name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+                car.model_year && car.model_year.toString().includes(searchTerm)
             );
         });
         setFilteredCars(filteredCars);
@@ -74,7 +78,7 @@ export default function MainPage() {
                         <Sortbar onSortingLabelChange={handleSortingLabelChange} onSortingDirectionChange={handleSortingDirectionChange} />
                     </div>
                     <div className="carsGrid">
-                        {displayCarsByPage(filteredCars, 30, 1)}
+                        {displayCarsByPage(filteredCars, 30, carResultsPageNumber)}
                     </div>
                 </div>
             </div>
