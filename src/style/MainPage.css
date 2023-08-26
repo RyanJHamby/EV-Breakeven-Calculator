@@ -180,10 +180,8 @@ button {
     margin-right: 8px;
     cursor: pointer;
     font-size: 16px;
-    /* border: 1px solid #ccc; */
     padding: 5px 10px;
     border-radius: 4px;
-    /* background-color: #fff; */
     transition: background-color 0.3s ease;
 }
 
@@ -203,10 +201,7 @@ button {
     margin-right: 8px;
     cursor: pointer;
     font-size: 16px;
-    /* border: 1px solid #ccc; */
     padding: 5px 10px;
-    /* border-radius: 4px; */
-    /* background-color: #fff; */
     transition: background-color 0.3s ease;
 }
 
@@ -224,28 +219,18 @@ button {
 
 .prev-next {
     background-color: transparent;
-    /* Default background color for buttons */
     color: #333;
-    /* Default text color for buttons */
     border: none;
     padding: 5px 10px;
     cursor: pointer;
     margin: 0 5px;
     transition: background-color 0.3s ease;
-    /* Smooth transition on background-color */
 }
 
 .prev-next:hover:enabled {
     background-color: #0074cc;
-    /* Blue background color on hover when enabled */
-    /* color: #fff; */
-    /* Text color on hover when enabled */
 }
 
 .prev-next:disabled {
-    /* background-color: #ccc; */
-    /* Background color for disabled buttons */
-    /* color: #999; */
-    /* Text color for disabled buttons */
     cursor: not-allowed;
 }
