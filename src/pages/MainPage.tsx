@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { CarProps } from "../components/car/Car";
+import { CarsPagination } from "../components/paginationbar/PaginationBar";
 import { FilterSidebar } from "../components/sidebar/FilterSidebar";
 import { Sortbar } from "../components/sortbar/Sortbar";
 import { displayCarsByPage } from '../utils/customCarsDisplayFunctions';
@@ -19,6 +20,7 @@ export interface SortbarProps {
 }
 
 export default function MainPage() {
+    const maxCarResultsPerPage = 30;
     const [cars, setCars] = useState<CarProps[]>([]);
     const [filteredCars, setFilteredCars] = useState<CarProps[]>([]);
     const [sortType, setSortType] = useState<string>("manufacturer_name");
@@ -52,6 +54,10 @@ export default function MainPage() {
         setSortDirection(event.target.value);
     }
 
+    const handlePaginationChange = (pageNum: number) => {
+        setCarResultsPageNumber(pageNum);
+    }
+
     const handleSearch = (inputSearchTerm: string) => {
         setSearchTerm(inputSearchTerm);
         const filteredCars = cars.filter((car) => {
@@ -78,8 +84,9 @@ export default function MainPage() {
                         <Sortbar onSortingLabelChange={handleSortingLabelChange} onSortingDirectionChange={handleSortingDirectionChange} />
                     </div>
                     <div className="carsGrid">
-                        {displayCarsByPage(filteredCars, 30, carResultsPageNumber)}
+                        {displayCarsByPage(filteredCars, maxCarResultsPerPage, carResultsPageNumber)}
                     </div>
+                    <CarsPagination cars={filteredCars} carsPerPage={maxCarResultsPerPage} currentPage={carResultsPageNumber} onPageChange={handlePaginationChange} />
                 </div>
             </div>
         </div>
