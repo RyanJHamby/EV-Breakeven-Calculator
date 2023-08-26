@@ -1,6 +1,6 @@
 import React from 'react';
 import { render, fireEvent } from '@testing-library/react';
-import '@testing-library/jest-dom/extend-expect'; // Import jest-dom for expect assertions
+import '@testing-library/jest-dom/extend-expect';
 import { SearchBar } from './Searchbar';
 
 const onSearchMock = jest.fn();
@@ -46,6 +46,6 @@ describe('SearchBar component', () => {
         const searchButton = getByText('Search');
         fireEvent.click(searchButton);
 
-        expect(searchButton.style.backgroundColor).toBe('rgb(51, 51, 51)');
+        expect(searchButton.style.backgroundColor).toBe("rgb(0, 34, 255)");
     });
 });

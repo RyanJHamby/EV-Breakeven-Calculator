@@ -1,5 +1,4 @@
-import { FC, useState, useEffect } from "react";
-import React from 'react';
+import React, { FC, useState, useEffect } from "react";
 import "../../style/MainPage.css";
 
 interface SearchBarProps {
@@ -13,20 +12,13 @@ export const SearchBar: FC<SearchBarProps> = ({ searchTerm, onSearch, setSearchT
 
     useEffect(() => {
         const debounceTimeout = setTimeout(() => {
-            // Update the debounced search term after the specified delay
             setSearchTerm(searchTerm);
             if (searchTerm) {
                 onSearch(searchTerm);
             }
-        }, 500); // Adjust the debounce delay as needed (2 seconds in this case)
-        // Clear the timeout if the component unmounts or the search term changes
+        }, 500);
         return () => clearTimeout(debounceTimeout);
     }, [searchTerm]);
-
-    // useEffect(() => {
-    //     // Perform the search when the debounced search term changes
-    //     onSearch(searchTerm);
-    // }, [searchTerm, onSearch]);
 
     const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const newSearchTerm = e.target.value;
@@ -35,7 +27,6 @@ export const SearchBar: FC<SearchBarProps> = ({ searchTerm, onSearch, setSearchT
 
     const handleEnterKeyPress = (event: React.KeyboardEvent<HTMLInputElement>) => {
         if (event.key === 'Enter') {
-            // Trigger a search when Enter is pressed
             onSearch(searchTerm);
         }
     };
@@ -59,7 +50,7 @@ export const SearchBar: FC<SearchBarProps> = ({ searchTerm, onSearch, setSearchT
             />
             <button 
                 onClick={handleButtonClick}
-                style={{ backgroundColor: isClicked ? '#333' : '#333' }}
+                style={{ backgroundColor: isClicked ? '#0022FF' : '#66B3E6' }}
             >
                 Search
             </button>
