@@ -1,4 +1,4 @@
-import { FC, useState } from "react";
+import { FC, useState, useEffect } from "react";
 import React from 'react';
 import "../../style/MainPage.css";
 
@@ -11,13 +11,31 @@ interface SearchBarProps {
 export const SearchBar: FC<SearchBarProps> = ({ searchTerm, onSearch, setSearchTerm }) => {
     const [isClicked, setIsClicked] = useState(false);
 
+    useEffect(() => {
+        const debounceTimeout = setTimeout(() => {
+            // Update the debounced search term after the specified delay
+            setSearchTerm(searchTerm);
+            if (searchTerm) {
+                onSearch(searchTerm);
+            }
+        }, 500); // Adjust the debounce delay as needed (2 seconds in this case)
+        // Clear the timeout if the component unmounts or the search term changes
+        return () => clearTimeout(debounceTimeout);
+    }, [searchTerm]);
+
+    // useEffect(() => {
+    //     // Perform the search when the debounced search term changes
+    //     onSearch(searchTerm);
+    // }, [searchTerm, onSearch]);
+
     const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        setSearchTerm(e.target.value);
+        const newSearchTerm = e.target.value;
+        setSearchTerm(newSearchTerm);
     };
 
     const handleEnterKeyPress = (event: React.KeyboardEvent<HTMLInputElement>) => {
         if (event.key === 'Enter') {
-            setSearchTerm(event.currentTarget.value);
+            // Trigger a search when Enter is pressed
             onSearch(searchTerm);
         }
     };
