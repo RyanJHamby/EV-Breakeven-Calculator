@@ -1,6 +1,35 @@
-# Getting Started with Create React App
+## How I worked on this project
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+- I built this app by combining several Figma designs: [Car Shop Figma](<https://www.figma.com/file/wKzgNGmmo7NsIcxkgwjhFK/Car-Shop-Landing-Page-(Community)?type=design&node-id=0-1&mode=design>)
+- I triaged tasks on GitHub issues in this project repo [this -> GitHub Issues](https://github.com/RyanJHamby/EV-Breakeven-Calculator/issues)
+- I used feature branches and pull requests to review code I was pushing [this -> Pull Requests](https://github.com/RyanJHamby/EV-Breakeven-Calculator/pulls?q=is%3Apr+is%3Aclosed)
+- I added unit tests soon after adding a feature and ran the test suite to ensure no backwards incompatible changes [Ex 1: SearchBar tests](https://github.com/RyanJHamby/EV-Breakeven-Calculator/blob/main/src/components/searchbar/Searchbar.test.tsx) | [Ex 2: Car Snapshot test](https://github.com/RyanJHamby/EV-Breakeven-Calculator/blob/main/src/components/car/Car.test.tsx)
+- I added integration test to test user flows using [React Testing Library]()
+
+## How to navigate this project
+- React router controls multi-page navigation [Router setup](https://github.com/RyanJHamby/EV-Breakeven-Calculator/blob/main/src/routes.tsx) | [MainPage](https://github.com/RyanJHamby/EV-Breakeven-Calculator/blob/main/src/pages/MainPage.tsx) | [Calculator Page](https://github.com/RyanJHamby/EV-Breakeven-Calculator/blob/main/src/pages/CalculatorPage.tsx)
+- Custom CSS modules for responsive design [Example code](https://github.com/RyanJHamby/EV-Breakeven-Calculator/tree/main/src/style)
+- The application fetches vehicle data from the [NREL.gov database](https://developer.nrel.gov/docs/transportation/vehicles-v1/) and performs [filtering](https://github.com/RyanJHamby/EV-Breakeven-Calculator/blob/main/src/components/sidebar/FilterSidebar.tsx), [sorting](https://github.com/RyanJHamby/EV-Breakeven-Calculator/blob/main/src/components/sortbar/Sortbar.tsx), [searching](https://github.com/RyanJHamby/EV-Breakeven-Calculator/blob/main/src/components/searchbar/Searchbar.tsx), and [pagination](https://github.com/RyanJHamby/EV-Breakeven-Calculator/blob/main/src/components/paginationbar/PaginationBar.tsx)
+
+## Why I built the project this way
+- Initially I meant to use real-time prices of cars to run computations on data from the Kelly Blue Book API. However, KBB responded to my API access inquiry by informing me that they do not grant access to developers working on personal projects. Thus, I kept a small calculator section but focused more on the UI of fetching, sorting, filtering, searching, and paginating a set of cars from a single API
+
+- I chose TS instead of normal JS because TS supports static typing to check for type-related errors at compile-time, its code is more maintainable via the use of interfaces, and it's commonly used in larger codebases. Although this is a small project suitable for just JS, I found TS worth the extra code
+
+- State management: I used React hooks to manage state in this project mainly since Redux is not typically used for simple parent-child component relationships, see this issue for more info: [Redux GitHub Issue](https://github.com/RyanJHamby/EV-Breakeven-Calculator/issues/16)
+
+- Although I would ideally define my own API and dataset, I wanted to focus mainly on developing frontend React skills in this project. This helped to reduce feature creep and accelerate learning React
+
+- It's extremely important to unit test and integration test in large-scale projects, so I made sure to cover these practices in this project
+
+## If I had more time I would do this
+- Add more inclusive accessibility patterns. Although I followed most guidelines I found in [this article](https://uxdesign.cc/accessibility-patterns-all-front-end-developers-should-know-b5d705c42b4c), I came up with an idea for an extension of this project to use Computer Vision to auto-generate Alt Text tags from images fetched from the `url` attribute. This would be a good follow-up project to integrate into this website
+
+- Set up a custom linter for the project, and enforce it to pass in order to build
+
+- Add end-to-end Cypress tests
+
+- Integrate with an API that fetches real-time prices of car models for better data modeling and dynamic API calls
 
 ## Available Scripts
 
@@ -28,19 +57,3 @@ The build is minified and the filenames include the hashes.\
 Your app is ready to be deployed!
 
 See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
